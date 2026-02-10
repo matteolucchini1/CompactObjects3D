@@ -1,0 +1,213 @@
+statistic chi
+data 1:1 event_30-200.pha
+
+data 1:2 event_201-1200.pha
+response  1:2 none
+response  2:2 event_201-1200.rmf
+
+data 1:3 real_30-200_201-1200.pha
+response  1:3 none
+response  3:3 real_30-200_201-1200.rmf
+
+data 1:4 imag_30-200_201-1200.pha
+response  1:4 none
+response  4:4 imag_30-200_201-1200.rmf
+
+data 1:5 plag_30-200_201-1200.pha
+response  1:5 none
+response  5:5 plag_30-200_201-1200.rmf
+
+data 1:6 cohe_30-200_201-1200.pha
+response  1:6 none
+response  6:6 cohe_30-200_201-1200.rmf
+ignore 1:151-281 2:151-281 3:151-281 4:151-281 5:1-281 6:1-281
+
+method leven 10 0.01
+abund wilm
+xsect vern
+cosmo 70 0 0.73
+xset delta 0.01
+xset APECROOT  /Software/users/xray/ATOMDB/atomdb_v3.0.8/apec_v3.0.8
+xset LINECRITLEVEL  1e-12
+systematic 0
+mdefine xlor Lorentz(LineE,Width)cos(plag) : add
+mdefine ylor Lorentz(LineE,Width)sin(plag) : add
+mdefine coherence ((xlor(LineE1,Width1,plag1)*norm1+xlor(LineE2,Width2,plag2)*norm2+xlor(LineE3,Width3,plag3)*norm3+xlor(LineE4,Width4,plag4)*norm4+xlor(LineE5,Width5,plag5)*norm5+xlor(LineE6,Width6,plag6)*norm6+xlor(LineE7,Width7,plag7)*norm7)**2+(ylor(LineE1,Width1,plag1)*norm1+ylor(LineE2,Width2,plag2)*norm2+ylor(LineE3,Width3,plag3)*norm3+ylor(LineE4,Width4,plag4)*norm4+ylor(LineE5,Width5,plag5)*norm5+ylor(LineE6,Width6,plag6)*norm6+ylor(LineE7,Width7,plag7)*norm7)**2)/((Lorentz(LineE1,Width1)*nn1+Lorentz(LineE2,Width2)*nn2+Lorentz(LineE3,Width3)*nn3+Lorentz(LineE4,Width4)*nn4+Lorentz(LineE5,Width5)*nn5+Lorentz(LineE6,Width6)*nn6+Lorentz(LineE7,Width7)*nn7)*(Lorentz(LineE1,Width1)*mm1+Lorentz(LineE2,Width2)*mm2+Lorentz(LineE3,Width3)*mm3+Lorentz(LineE4,Width4)*mm4+Lorentz(LineE5,Width5)*mm5+Lorentz(LineE6,Width6)*mm6+Lorentz(LineE7,Width7)*mm7)) : add
+mdefine plags atan2(ylor(LineE1,Width1,plag1)*norm1+ylor(LineE2,Width2,plag2)*norm2+ylor(LineE3,Width3,plag3)*norm3+ylor(LineE4,Width4,plag4)*norm4+ylor(LineE5,Width5,plag5)*norm5+ylor(LineE6,Width6,plag6)*norm6+ylor(LineE7,Width7,plag7)*norm7,xlor(LineE1,Width1,plag1)*norm1+xlor(LineE2,Width2,plag2)*norm2+xlor(LineE3,Width3,plag3)*norm3+xlor(LineE4,Width4,plag4)*norm4+xlor(LineE5,Width5,plag5)*norm5+xlor(LineE6,Width6,plag6)*norm6+xlor(LineE7,Width7,plag7)*norm7) : add
+model  1:1pds lorentz + lorentz + lorentz + lorentz + lorentz + lorentz + lorentz
+    8.24551e-10          1      1e-10      1e-10      1e+22      1e+22
+        1.31101        0.1      1e-10      1e-10      1e+22      1e+22
+      0.0136071        0.1      1e-10      1e-10      1e+22      1e+22
+       0.501554       0.05      1e-10      1e-10      1e+06      1e+06
+       0.416097       0.05      1e-10      1e-10      1e+22      1e+22
+     0.00307759       0.01      1e-10      1e-10      1e+22      1e+22
+        1.45132        0.1      1e-10      1e-10      1e+22      1e+22
+       0.119336        0.1      1e-10      1e-10      1e+22      1e+22
+      0.0001145        0.1      1e-10      1e-10      1e+22      1e+22
+        2.09104          1      1e-10      1e-10      1e+22      1e+22
+       0.357422          1      1e-10      1e-10      1e+22      1e+22
+    0.000304869       0.01      1e-10      1e-10      1e+22      1e+22
+        2.57171        0.1      1e-10      1e-10      1e+22      1e+22
+        1.06121        0.1      1e-10      1e-10      1e+22      1e+22
+    0.000603863          1      1e-10      1e-10      1e+22      1e+22
+        4.23916        0.1      1e-10      1e-10      1e+22      1e+22
+        4.05529        0.1      1e-10      1e-10      1e+22      1e+22
+     0.00256518        0.1      1e-10      1e-10      1e+22      1e+22
+          1e-10        0.1      1e-10      1e-10      1e+22      1e+22
+        9.27978        0.1      1e-10      1e-10      1e+22      1e+22
+          1e-10        0.1      1e-10      1e-10      1e+22      1e+22
+model  2:2pds lorentz + lorentz + lorentz + lorentz + lorentz + lorentz + lorentz
+= 1pds:p1
+= 1pds:p2
+      0.0345656        0.1      1e-10      1e-10      1e+22      1e+22
+= 1pds:p4
+= 1pds:p5
+     0.00795157       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p7
+= 1pds:p8
+    0.000432937        0.1      1e-10      1e-10      1e+22      1e+22
+= 1pds:p10
+= 1pds:p11
+     0.00130064       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p13
+= 1pds:p14
+      0.0042827          1      1e-10      1e-10      1e+22      1e+22
+= 1pds:p16
+= 1pds:p17
+      0.0100764        0.1      1e-10      1e-10      1e+22      1e+22
+= 1pds:p19
+= 1pds:p20
+      0.0220832        0.1      1e-10      1e-10      1e+22      1e+22
+model  3:3rea xlor + xlor + xlor + xlor + xlor + xlor + xlor
+= 1pds:p1
+= 1pds:p2
+    -0.00891855       0.01     -1e+22     -1e+22      1e+22      1e+22
+      0.0214275       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p4
+= 1pds:p5
+       0.137534       0.01     -1e+22     -1e+22      1e+22      1e+22
+     0.00505918       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p7
+= 1pds:p8
+      -0.210387       0.01     -1e+22     -1e+22      1e+22      1e+22
+    0.000223363       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p10
+= 1pds:p11
+        1.07344       0.01     -1e+22     -1e+22      1e+22      1e+22
+    0.000643309       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p13
+= 1pds:p14
+       0.572242       0.01     -1e+22     -1e+22      1e+22      1e+22
+     0.00185964       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p16
+= 1pds:p17
+       0.367714       0.01     -1e+22     -1e+22      1e+22      1e+22
+     0.00551201       0.01      1e-10      1e-10      1e+22      1e+22
+= 1pds:p19
+= 1pds:p20
+      -0.265709       0.01     -1e+22     -1e+22      1e+22      1e+22
+     0.00463313       0.01      1e-10      1e-10      1e+22      1e+22
+model  4:4ima ylor + ylor + ylor + ylor + ylor + ylor + ylor
+= 3rea:p1
+= 3rea:p2
+= 3rea:p3
+= 3rea:p4
+= 3rea:p5
+= 3rea:p6
+= 3rea:p7
+= 3rea:p8
+= 3rea:p9
+= 3rea:p10
+= 3rea:p11
+= 3rea:p12
+= 3rea:p13
+= 3rea:p14
+= 3rea:p15
+= 3rea:p16
+= 3rea:p17
+= 3rea:p18
+= 3rea:p19
+= 3rea:p20
+= 3rea:p21
+= 3rea:p22
+= 3rea:p23
+= 3rea:p24
+= 3rea:p25
+= 3rea:p26
+= 3rea:p27
+= 3rea:p28
+model  5:5pla plags
+= 3rea:p1
+= 3rea:p2
+= 3rea:p3
+= 3rea:p4
+= 3rea:p5
+= 3rea:p6
+= 3rea:p7
+= 3rea:p8
+= 3rea:p9
+= 3rea:p10
+= 3rea:p11
+= 3rea:p12
+= 3rea:p13
+= 3rea:p14
+= 3rea:p15
+= 3rea:p16
+= 3rea:p17
+= 3rea:p18
+= 3rea:p19
+= 3rea:p20
+= 3rea:p21
+= 3rea:p22
+= 3rea:p23
+= 3rea:p24
+= 3rea:p25
+= 3rea:p26
+= 3rea:p27
+= 3rea:p28
+              1         -1          0          0      1e+20      1e+24
+model  6:6coh coherence
+= 3rea:p1
+= 3rea:p2
+= 3rea:p3
+= 3rea:p4
+= 3rea:p5
+= 3rea:p6
+= 3rea:p7
+= 3rea:p8
+= 3rea:p9
+= 3rea:p10
+= 3rea:p11
+= 3rea:p12
+= 3rea:p13
+= 3rea:p14
+= 3rea:p15
+= 3rea:p16
+= 3rea:p17
+= 3rea:p18
+= 3rea:p19
+= 3rea:p20
+= 3rea:p21
+= 3rea:p22
+= 3rea:p23
+= 3rea:p24
+= 3rea:p25
+= 3rea:p26
+= 3rea:p27
+= 3rea:p28
+= 1pds:p3
+= 1pds:p6
+= 1pds:p9
+= 1pds:p12
+= 1pds:p15
+= 1pds:p18
+= 1pds:p21
+= 2pds:p3
+= 2pds:p6
+= 2pds:p9
+= 2pds:p12
+= 2pds:p15
+= 2pds:p18
+= 2pds:p21
+              1         -1          0          0      1e+20      1e+24
+bayes off
